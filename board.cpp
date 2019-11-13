@@ -20,7 +20,8 @@ void showRowsSeparator() {
 
 void showRow(const Board::fields_t::value_type& row) {
     for(auto col = 0U; col < Board::BoardWidth; ++col) {
-        std::cout << "|" << (row[col] ? '?': ' ');
+        auto& field = row[col];
+        std::cout << "|" << (field ? field->getRepr(): ' ');
     }
     std::cout << "|\n";
 }
@@ -29,6 +30,8 @@ void showRow(const Board::fields_t::value_type& row) {
 
 Board::Board()
     : fields{} {
+        // simple example
+        fields[3][3].emplace(TokenColor::Yellow);
 }
 
 void Board::show() const {
