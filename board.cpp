@@ -26,18 +26,19 @@ void showRow(const Board::fields_t::value_type& row) {
     std::cout << "|\n";
 }
 
-bool columnNotFull(const Board::fields_t& fields, unsigned col) {
+inline bool columnNotFull(const Board::fields_t& fields, unsigned col) {
     return ! fields[Board::BoardHeight - 1][col].has_value();
 }
 
 void tokenGravity(Board::fields_t& fields, unsigned col) {
-    auto row = Board::BoardHeight;
+    auto row = Board::BoardHeight - 1;
     while(row--) {
-        if (fields[row - 1][col]) {
+        auto& prevField = fields[row - 1][col];
+        auto& currField = fields[row][col];
+        if (prevField) {
             break;
         }
-        fields[row - 1][col].emplace(fields[row][col]->getColor());
-        fields[row][col].reset();
+        prevField.swap(currField);
     }
 }
 
@@ -60,13 +61,13 @@ void Board::show() const {
     showColumnsNumbers();
 }
 
-bool Board::dropToken(const Token& token, unsigned col) {
+bool Board::dropToken(Token&& token, unsigned col) {
     assert((col > 0) && (col <= BoardWidth));
     bool result = true;
     // Normalize col to index
     --col;
     if (columnNotFull(fields, col)) {
-        fields[BoardHeight - 1][col].emplace(token.getColor());
+        fields[BoardHeight - 1][col] = std::move(token);
         tokenGravity(fields, col);
     } else {
         result = false;

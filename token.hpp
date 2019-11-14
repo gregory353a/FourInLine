@@ -13,8 +13,12 @@ public:
     Token(const Token&) = delete;
     Token& operator=(const Token&) = delete;
 
+    // movable
+    Token(Token&&) = default;
+    Token& operator=(Token&&) = default;
+
     TokenColor getColor() const;
     char getRepr() const;
 private:
-    const TokenColor color;
+    TokenColor color;
 };
