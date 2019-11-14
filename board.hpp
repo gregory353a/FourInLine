@@ -12,6 +12,8 @@ public:
 
     Board();
     void show() const;
+    bool dropToken(const Token& token, unsigned column);
+    bool isFull() const;
 private:
     fields_t fields;
 };
