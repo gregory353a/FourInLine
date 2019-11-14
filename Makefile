@@ -15,7 +15,7 @@ else
 endif
 
 
-OBJECTS := main.o board.o token.o
+OBJECTS := main.o board.o token.o displayer.o
 
 all: main
 
