@@ -33,9 +33,9 @@ inline bool columnNotFull(const Board::fields_t& fields, unsigned col) {
 void tokenGravity(Board::fields_t& fields, unsigned col) {
     auto row = Board::BoardHeight - 1;
     while(row--) {
-        auto& prevField = fields[row - 1][col];
+        auto& prevField = fields[row + 1][col];
         auto& currField = fields[row][col];
-        if (prevField) {
+        if (currField) {
             break;
         }
         prevField.swap(currField);
@@ -76,7 +76,8 @@ bool Board::dropToken(Token&& token, unsigned col) {
 }
 
 bool Board::isFull() const {
-    const auto& row = fields[BoardWidth - 1];
-    return ! std::any_of(row.cbegin(), row.cend(),
-        [](const auto& field) { return !field.has_value(); });
+    const auto& row = fields[BoardHeight - 1];
+    return ! std::any_of(row.cbegin(), row.cend(), [](const auto& field) {
+        return !field.has_value();
+    });
 }
