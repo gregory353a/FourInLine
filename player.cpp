@@ -1,7 +1,6 @@
 #include "player.hpp"
 #include "settings.hpp"
 #include "displayer.hpp"
-#include <iostream>
 #include <limits>
 
 using namespace std::string_literals;
