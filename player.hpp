@@ -6,10 +6,15 @@
 class Player {
 public:
     Player(const std::string& name, TokenColor color);
+
+    // noncopyable
+    Player(const Player&) = delete;
+    Player& operator=(const Player&) = delete;
+
     TokenColor getColor() const;
     const std::string& getName() const;
     unsigned getColumn() const;
 private:
-    std::string name;
-    TokenColor color;
+    const std::string name;
+    const TokenColor color;
 };
