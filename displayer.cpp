@@ -43,7 +43,7 @@ void Displayer::visit(container_t tab) {
     std::memcpy(fields, tab, Board::BoardHeight * Board::BoardWidth * sizeof(int));
 }
 
-void Displayer::show() const {
+void Displayer::showBoard() const {
     showColumnsNumbers();
     auto row = Board::BoardHeight;
     while(row--) {
@@ -52,5 +52,14 @@ void Displayer::show() const {
     }
     showRowsSeparator();
     showColumnsNumbers();
+}
+
+void Displayer::showPlayerInfo(std::string_view name, TokenColor color) const {
+    std::cout << "Player: " << name << ", plays: "
+      << (color == TokenColor::Red ? "Red": "Yellow") << '\n';
+}
+
+void Displayer::showIncorrectMove() const {
+    std::cerr << "Incorrect move! Try again!\n";
 }
 

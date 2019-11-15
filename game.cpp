@@ -13,7 +13,20 @@ Game::Game()
 Game::~Game() = default;
 
 void Game::run() {
-    for(;;) {
-        // Tu implementacja
+    showBoard();
+    while(! board->isFull()) {
+        displayer->showPlayerInfo(current_player->getName(), current_player->getColor());
+        auto column = current_player->getColumn();
+        if(! board->dropToken(Token(current_player->getColor()), column)) {
+            displayer->showIncorrectMove();
+            continue;
+        }
+        showBoard();
+        current_player.swap(next_player);
     }
+}
+
+void Game::showBoard() const {
+    board->accept(*displayer);
+    displayer->showBoard();
 }

@@ -12,6 +12,8 @@ public:
     void run();
     ~Game();
 private:
+    void showBoard() const;
+
     std::unique_ptr<Player> current_player;
     std::unique_ptr<Player> next_player;
     const std::unique_ptr<Board> board;

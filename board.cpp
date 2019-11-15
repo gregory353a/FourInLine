@@ -1,5 +1,6 @@
 #include "board.hpp"
 #include "displayer.hpp"
+#include <algorithm>
 #include <cassert>
 
 namespace {
