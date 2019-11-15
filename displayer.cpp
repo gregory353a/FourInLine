@@ -21,7 +21,7 @@ void showRowsSeparator() {
 }
 
 void showRow(const int row[Board::BoardWidth]) {
-    static const char fieldNumberToChar[] = {' ', 'X', 'O' };
+    constexpr static char fieldNumberToChar[] = {' ', 'X', 'O' };
     for(auto i = 0U; i < Board::BoardWidth; ++i) {
         auto value = row[i];
         assert((value < 3) && (value >= 0));
@@ -40,11 +40,7 @@ Displayer::Displayer()
 }
 
 void Displayer::visit(container_t tab) {
-    for(auto row = 0U; row < Board::BoardHeight; ++row) {
-        for(auto col = 0U; col < Board::BoardWidth; ++col) {
-            fields[row][col] = tab[row][col];
-        }
-    }
+    std::memcpy(fields, tab, Board::BoardHeight * Board::BoardWidth * sizeof(int));
 }
 
 void Displayer::show() const {
