@@ -11,7 +11,7 @@ ifeq ($(UNAME_S),Darwin)
 else ifeq ($(UNAME_S),Linux)
     LDFLAGS := -Wl,-gc-sections
 else ifeq ($(OS),Windows_NT)
-    LDFLAGS :=
+    LDFLAGS := -Wl,-gc-sections
 else
     LDFLAGS :=
 endif
@@ -26,6 +26,8 @@ main: $(OBJECTS)
 
 clean:
 	@rm -f main $(OBJECTS) > /dev/null 2>&1
+
+# g++ -MM *.cpp
 
 board.o: board.cpp board.hpp token.hpp displayer.hpp
 displayer.o: displayer.cpp displayer.hpp token.hpp board.hpp
