@@ -1,11 +1,13 @@
 #pragma once
 
 #include <string>
-#include "token.hpp"
+#include "settings.hpp"
+
+class Displayer;
 
 class Player {
 public:
-    Player(const std::string& name, TokenColor color);
+    Player(const std::string& name, TokenColor color, Displayer& displayer);
 
     // noncopyable
     Player(const Player&) = delete;
@@ -17,4 +19,5 @@ public:
 private:
     const std::string name;
     const TokenColor color;
+    Displayer& displayer;
 };

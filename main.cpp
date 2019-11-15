@@ -1,6 +1,8 @@
 #include "game.hpp"
+#include "displayer.hpp"
 
 int main() {
-    Game game;
+    Displayer displayer;
+    Game game{displayer};
     game.run();
 }

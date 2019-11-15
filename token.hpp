@@ -1,9 +1,6 @@
 #pragma once
 
-enum class TokenColor {
-    Red,
-    Yellow
-};
+#include "settings.hpp"
 
 class Token {
 public:

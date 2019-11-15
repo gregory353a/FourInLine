@@ -6,11 +6,11 @@
 namespace {
 
 inline bool columnNotFull(const Board::fields_t& fields, unsigned col) {
-    return ! fields[Board::BoardHeight - 1][col].has_value();
+    return ! fields[BoardHeight - 1][col].has_value();
 }
 
 void tokenGravity(Board::fields_t& fields, unsigned col) {
-    auto row = Board::BoardHeight - 1;
+    auto row = BoardHeight - 1;
     while(row--) {
         auto& prevField = fields[row + 1][col];
         auto& currField = fields[row][col];
@@ -21,9 +21,9 @@ void tokenGravity(Board::fields_t& fields, unsigned col) {
     }
 }
 
-void transformFieldsToInt(const Board::fields_t& fields, int tab[Board::BoardHeight][Board::BoardWidth]) {
-    for(auto row = 0U; row < Board::BoardHeight; ++row) {
-        for(auto col = 0U; col < Board::BoardWidth; ++col) {
+void transformFieldsToInt(const Board::fields_t& fields, int tab[BoardHeight][BoardWidth]) {
+    for(auto row = 0U; row < BoardHeight; ++row) {
+        for(auto col = 0U; col < BoardWidth; ++col) {
             tab[row][col] = (fields[row][col].has_value() ? static_cast<int>(fields[row][col]->getColor()) + 1: 0);
         }
     }

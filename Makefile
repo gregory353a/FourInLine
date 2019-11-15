@@ -11,7 +11,7 @@ ifeq ($(UNAME_S),Darwin)
 else ifeq ($(UNAME_S),Linux)
     LDFLAGS := -Wl,-gc-sections
 else ifeq ($(OS),Windows_NT)
-    LDFLAGS := -Wl,-gc-sections
+    LDFLAGS :=
 else
     LDFLAGS :=
 endif
@@ -29,9 +29,3 @@ clean:
 
 # g++ -MM *.cpp
 
-board.o: board.cpp board.hpp token.hpp displayer.hpp
-displayer.o: displayer.cpp displayer.hpp token.hpp board.hpp
-game.o: game.cpp game.hpp token.hpp player.hpp displayer.hpp board.hpp
-main.o: main.cpp game.hpp
-player.o: player.cpp player.hpp token.hpp board.hpp
-token.o: token.cpp token.hpp

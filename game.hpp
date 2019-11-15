@@ -8,7 +8,7 @@ class Displayer;
 
 class Game {
 public:
-    Game();
+    Game(Displayer& displayer);
     void run();
     ~Game();
 private:
@@ -17,5 +17,5 @@ private:
     std::unique_ptr<Player> current_player;
     std::unique_ptr<Player> next_player;
     const std::unique_ptr<Board> board;
-    const std::unique_ptr<Displayer> displayer;
+    Displayer& displayer;
 };
