@@ -6,7 +6,6 @@ AIPlayer::AIPlayer(std::string_view name_, TokenColor color_, Displayer& display
 	  rd{},
 	  generator{rd()},
 	  distribution(1, BoardWidth) {
-
 }
 
 unsigned AIPlayer::getColumn() {
