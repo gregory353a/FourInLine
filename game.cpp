@@ -2,15 +2,15 @@
 #include "board.hpp"
 #include "token.hpp"
 #include "player.hpp"
+#include "human_player.hpp"
+#include "ai_player.hpp"
 #include "displayer.hpp"
 
 Game::Game(Displayer& displayer_)
-    : current_player{},
-      next_player{},
+    : current_player{std::make_unique<HumanPlayer>("Embla", TokenColor::Red, displayer_)},
+      next_player{std::make_unique<AIPlayer>("HAL2001", TokenColor::Yellow, displayer_)},
       board{std::make_unique<Board>()},
       displayer{displayer_} {
-    current_player= std::make_unique<Player>("Embla", TokenColor::Red, displayer);
-    next_player = std::make_unique<Player>("George", TokenColor::Yellow, displayer);
 }
 
 Game::~Game() = default;

@@ -1,13 +1,13 @@
 .PHONY := clean
-CXXFLAGS := -march=native -Os -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -std=c++17 -Wall -Wextra -pedantic
+CXXFLAGS := -march=native -Os -fdata-sections -ffunction-sections -fno-exceptions -fno-rtti -std=c++2a -Wall -Wextra -pedantic
 CXX := g++
 
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
     CXX := clang++
-    CXXFLAGS += -Wno-missing-noreturn -Wno-padded -Wno-c++98-compat -Weverything
-    LDFLAGS := -Wl,-dead_strip
+    CXXFLAGS += -Wno-missing-noreturn -Wno-padded -Wno-c++98-compat -Weverything -flto
+    LDFLAGS := -Wl,-dead_strip -flto
 else ifeq ($(UNAME_S),Linux)
     LDFLAGS := -Wl,-gc-sections
 else ifeq ($(OS),Windows_NT)
@@ -17,7 +17,7 @@ else
 endif
 
 
-OBJECTS := main.o board.o token.o displayer.o player.o game.o
+OBJECTS := main.o board.o token.o displayer.o player.o game.o human_player.o ai_player.o
 
 all: main
 
