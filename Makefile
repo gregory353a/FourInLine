@@ -26,3 +26,10 @@ main: $(OBJECTS)
 
 clean:
 	@rm -f main $(OBJECTS) > /dev/null 2>&1
+
+board.o: board.cpp board.hpp token.hpp displayer.hpp
+displayer.o: displayer.cpp displayer.hpp token.hpp board.hpp
+game.o: game.cpp game.hpp token.hpp player.hpp displayer.hpp board.hpp
+main.o: main.cpp game.hpp
+player.o: player.cpp player.hpp token.hpp board.hpp
+token.o: token.cpp token.hpp
